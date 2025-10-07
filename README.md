@@ -3,7 +3,6 @@
 A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.
 
 ![ClipMaster Demo](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=ClipMaster+Screenshot)
-*Note: Replace this placeholder with an actual screenshot of ClipMaster in action!*
 
 ## Features ✨
 
@@ -27,7 +26,7 @@ A powerful desktop clipboard manager that enhances your copy-paste workflow with
 
 ```bash
 # Clone the repository (if using Git)
-git clone https://github.com/yourusername/clipmaster.git
+git clone https://github.com/HikwaMehluli/clipmaster.git
 cd clipmaster
 
 # OR download and extract the ZIP file, then navigate to the folder
@@ -284,7 +283,7 @@ ClipMaster is released under the [MIT License](https://opensource.org/licenses/M
 
 If you encounter any issues or have questions:
 -   Refer to the [Troubleshooting](#troubleshooting-) section.
--   Open an issue on the [GitHub repository](https://github.com/yourusername/clipmaster/issues).
+-   Open an issue on the [GitHub repository](https://github.com/HikwaMehluli/clipmaster/issues).
 -   Review the well-commented source code for deeper understanding.
 
 ## Credits 👏
