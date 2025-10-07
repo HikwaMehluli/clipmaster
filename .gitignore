@@ -1,0 +1,113 @@
+# ClipMaster - Git Ignore File
+# Specifies intentionally untracked files to ignore
+
+# ============================================================================
+# Node.js Dependencies
+# ============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================================================
+# Build Output
+# ============================================================================
+dist/
+build/
+out/
+*.app
+*.exe
+*.dmg
+*.deb
+*.rpm
+*.AppImage
+
+# ============================================================================
+# Electron Builder
+# ============================================================================
+.electron-builder.yml
+electron-builder.env
+
+# ============================================================================
+# OS Files
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ============================================================================
+# IDE / Editor Files
+# ============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# ============================================================================
+# Testing & Coverage
+# ============================================================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ============================================================================
+# Logs
+# ============================================================================
+logs/
+*.log
+
+# ============================================================================
+# Environment Variables
+# ============================================================================
+.env
+.env.local
+.env.*.local
+
+# ============================================================================
+# Temporary Files
+# ============================================================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# Optional: User Data (Uncomment if you want to track configs)
+# ============================================================================
+# These are created by electron-store during runtime
+# Uncomment if you DON'T want to track user data in Git
+
+# Windows
+# %APPDATA%/clipmaster/
+
+# macOS
+# ~/Library/Application Support/clipmaster/
+
+# Linux
+# ~/.config/clipmaster/

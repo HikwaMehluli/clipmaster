@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipMaster - Clipboard History</title>
+    <meta name="description"
+        content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">
+    <meta name="author" content="Hikwa Mehluli">
+    <meta name="keywords" content="clipboard manager, clipboard history, copy paste, productivity tool, desktop app">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-theme">
+    <!-- Main Container -->
+    <div id="app" class="window-container">
+
+        <!-- Header with Search Bar -->
+        <div class="header">
+            <div class="search-container">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search clipboard history..."
+                    autocomplete="off">
+            </div>
+
+            <!-- Close Button -->
+            <button id="closeBtn" class="close-btn" title="Close (Esc)">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- History List Container -->
+        <div id="historyList" class="history-list">
+            <!-- Items will be dynamically added here by renderer.js -->
+
+            <!-- Empty State (shown when no history) -->
+            <div id="emptyState" class="empty-state">
+                <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                    </path>
+                </svg>
+                <p class="empty-text">No clipboard history yet</p>
+                <p class="empty-subtext">Copy something to get started!</p>
+            </div>
+        </div>
+
+        <!-- Footer with Keyboard Hints and Theme Toggle -->
+        <div class="footer">
+            <div class="footer-left">
+                <span class="footer-text">
+                    <kbd>↑↓</kbd> Navigate ·
+                    <kbd>Enter</kbd> Copy ·
+                    <kbd>Del</kbd> Delete ·
+                    <kbd>Esc</kbd> Close
+                </span>
+            </div>
+            <div class="footer-right">
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Renderer Process Script -->
+    <script src="renderer.js"></script>
+</body>
+
+</html>
