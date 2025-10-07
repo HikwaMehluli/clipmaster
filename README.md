@@ -2,7 +2,7 @@
 
 A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.
 
-![ClipMaster Demo](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=ClipMaster+Screenshot)
+![ClipMaster Demo](https://github.com/HikwaMehluli/clipmaster/blob/master/img/ClipMaster-Demo.png)
 
 ## Features ✨
 
