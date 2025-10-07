@@ -54,7 +54,6 @@ mkdir assets
 
 **For development, you can:**
 - Place any PNG image (256x256px recommended) as `assets/icon.png`.
-- Find suitable icons on platforms like [Icons8](https://icons8.com/icons/set/clipboard) or [Flaticon](https://www.flaticon.com/).
 
 **For production builds**, you'll typically need:
 - `icon.ico` for Windows
@@ -295,6 +294,4 @@ Built with passion and powered by:
 
 ---
 
-**Made with ❤️ for productivity enthusiasts**
-
-*Version 1.0.0*
+### [**Made with ❤️ by thatAfro**](https://thatafro.netlify.app)
