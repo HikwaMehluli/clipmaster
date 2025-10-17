@@ -125,8 +125,7 @@ function addToHistory(content) {
     if (Notification.isSupported()) {
         new Notification({
             title: 'Text Copied to History',
-            body: 'Text has been copied to history and can be pasted by opening History.',
-            icon: path.join(__dirname, 'assets', 'icon.png')
+            icon: path.join(__dirname, 'assets', 'icon.ico')
         }).show();
     }
 
@@ -211,6 +210,7 @@ function createHistoryWindow() {
         alwaysOnTop: true, // Stay on top of other windows
         skipTaskbar: false, // Don't show in taskbar = true, Show in taskbar = false 
         show: true, // Start hidden = false, Start Showing = true. show when ready
+        icon: path.join(__dirname, 'assets', 'icon.ico'), // Set the window icon
         webPreferences: {
             nodeIntegration: true, // Allow Node.js in renderer
             contextIsolation: false, // Required for nodeIntegration
@@ -349,7 +349,7 @@ function toggleTheme() {
 function createTray() {
     // Create tray icon (you'll need to add an icon file)
     // For now, we'll use a placeholder
-    tray = new Tray(path.join(__dirname, 'assets', 'icon.png'));
+    tray = new Tray(path.join(__dirname, 'assets', 'icon.ico'));
 
     // Create context menu
     const contextMenu = Menu.buildFromTemplate([
@@ -425,7 +425,7 @@ ipcMain.on('paste-item', (event, content) => {
         new Notification({
             title: 'ClipMaster', // The title of the notification
             body: 'Text copied to clipboard! You can now paste it manually.', // The main text content of the notification
-            icon: path.join(__dirname, 'assets', 'icon.png') // Optional: An icon to display with the notification
+            icon: path.join(__dirname, 'assets', 'icon.ico') // Optional: An icon to display with the notification
         }).show();
     } else {
         // If notifications are not supported, log a message to the console.
@@ -488,7 +488,7 @@ if (!isFirstInstance) {
             new Notification({
                 title: 'ClipMaster is Already Running',
                 body: 'You can access it from the system tray or with the shortcut.',
-                icon: path.join(__dirname, 'assets', 'icon.png')
+                icon: path.join(__dirname, 'assets', 'icon.ico')
             }).show();
         }
 

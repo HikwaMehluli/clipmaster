@@ -1,6 +1,6 @@
 {
   "name": "clipmaster",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.",
   "main": "main.js",
   "scripts": {
@@ -41,7 +41,7 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.ico"
     },
     "mac": {
       "target": "dmg",
