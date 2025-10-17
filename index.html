@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClipMaster - Clipboard History</title>
     <meta name="description" content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">
@@ -68,9 +69,10 @@
                     <span class="slider round"></span>
                 </label>
             </div>
+            <div class="footer-copyright">
+                <a href="https://thatafro.netlify.app/" target="_blank">Developed with ❤️ by thatAfro</a>
+            </div>
         </div>
-    </div>
-
     <!-- Load Renderer Process Script -->
     <script src="renderer.js"></script>
 </body>

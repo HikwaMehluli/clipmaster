@@ -174,7 +174,7 @@ body {
 	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.2s ease;
-	position: relative;
+	position: relative; /* For positioning children */
 }
 
 .history-item:hover {
@@ -223,8 +223,8 @@ body {
 	white-space: pre-wrap;
 	word-break: break-word;
 	margin-bottom: 8px;
-	padding-left: 32px;
-	/* Space for index badge */
+	padding-left: 32px; /* Space for index badge */
+	padding-right: 32px; /* Space for delete button */
 
 	/* Limit to 3 lines */
 	display: -webkit-box;
@@ -240,7 +240,8 @@ body {
 	gap: 12px;
 	font-size: 12px;
 	color: var(--text-secondary);
-	padding-left: 32px;
+	padding-left: 32px; /* Space for index badge */
+	padding-right: 32px; /* Space for delete button */
 }
 
 .item-metadata span {
@@ -328,10 +329,10 @@ body {
 	padding: 12px 16px;
 	border-top: 1px solid var(--border-color);
 	background-color: var(--bg-primary);
-	/* Use flexbox to align items to the left and right */
 	display: flex;
-	justify-content: space-between; /* Distribute space between items */
-	align-items: center; /* Vertically align items in the middle */
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .footer-text {
@@ -349,6 +350,24 @@ body {
 	font-size: 11px;
 	font-weight: 600;
 	margin: 0 2px;
+}
+
+.footer-copyright {
+	/* border-top: 1px solid var(--border-color); */
+	flex-basis: 100%;
+	/* text-align: center; */
+	margin-top: 20px;
+	font-size: 12px;
+	color: var(--text-secondary);
+}
+
+.footer-copyright a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+.footer-copyright a:hover {
+	text-decoration: underline;
 }
 
 /* =============================================================================

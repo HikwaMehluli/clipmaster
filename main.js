@@ -42,6 +42,7 @@ let historyWindow = null;
 let tray = null;
 let lastClipboardContent = '';
 let clipboardCheckInterval = null;
+let isQuitting = false;
 
 // =============================================================================
 // CLIPBOARD HISTORY MANAGEMENT
@@ -121,6 +122,15 @@ function addToHistory(content) {
     // Save updated history
     saveHistory(history);
 
+    // Show notification that text was copied
+    if (Notification.isSupported()) {
+        new Notification({
+            title: 'Text Copied to History',
+            body: 'Text has been copied to history and can be pasted by opening History.',
+            icon: path.join(__dirname, 'assets', 'icon.png')
+        }).show();
+    }
+
     console.log(`Added to history: ${content.substring(0, 50)}... (${content.length} chars)`);
 }
 
@@ -199,7 +209,7 @@ function createHistoryWindow() {
     historyWindow = new BrowserWindow({
         width: 600,
         height: 500,
-        frame: true, // No title bar = false, Show Title bar = true
+        frame: false, // No title bar = false, Show Title bar = true
         transparent: false,
         resizable: false,
         alwaysOnTop: true, // Stay on top of other windows
@@ -223,8 +233,19 @@ function createHistoryWindow() {
 
     // Hide window instead of closing (faster to reopen)
     historyWindow.on('close', (event) => {
-        event.preventDefault();
-        historyWindow.hide();
+        if (!isQuitting) {
+            event.preventDefault();
+            historyWindow.hide();
+
+            // Notify the user that the app is still running in the background.
+            if (Notification.isSupported()) {
+                new Notification({
+                    title: 'ClipMaster is Still Running',
+                    body: 'The app is running in the system tray. Right-click the icon to quit.',
+                    icon: path.join(__dirname, 'assets', 'icon.png')
+                }).show();
+            }
+        }
     });
 
     // Handle window blur (lost focus) - hide window
@@ -450,8 +471,45 @@ ipcMain.on('close-window', () => {
 });
 
 // =============================================================================
+// SINGLE INSTANCE LOCK
+// =============================================================================
+
+// Ensure only one instance of the app can run at a time.
+const isFirstInstance = app.requestSingleInstanceLock();
+
+if (!isFirstInstance) {
+    // If this is a second instance, quit it. The first instance will be notified.
+    app.quit();
+} else {
+    // This is the first instance. Set up a handler for when a second instance is launched.
+    app.on('second-instance', () => {
+        // A second instance was started. Show a notification and focus the existing window.
+        if (Notification.isSupported()) {
+            new Notification({
+                title: 'ClipMaster is Already Running',
+                body: 'You can access it from the system tray or with the shortcut.',
+                icon: path.join(__dirname, 'assets', 'icon.png')
+            }).show();
+        }
+
+        // Focus the existing window.
+        if (historyWindow) {
+            if (historyWindow.isMinimized()) historyWindow.restore();
+            historyWindow.show();
+            historyWindow.focus();
+        } else {
+            showHistoryWindow();
+        }
+    });
+}
+
+// =============================================================================
 // APP LIFECYCLE
 // =============================================================================
+
+app.on('before-quit', () => {
+    isQuitting = true;
+});
 
 /**
  * App ready event - Initialize everything

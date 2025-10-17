@@ -1,3 +1,6 @@
+const { ipcRenderer } = require('electron');
+const { formatDistanceToNow } = require('date-fns');
+
 /**
  * ClipMaster - Renderer Process
  * 
@@ -9,8 +12,7 @@
  * - Communication with main process via IPC
  */
 
-const { ipcRenderer } = require('electron');
-const { formatDistanceToNow } = require('date-fns');
+
 
 // =============================================================================
 // STATE MANAGEMENT
@@ -81,7 +83,7 @@ function setupEventListeners() {
         console.log('Theme toggle switch changed');
         // Send an IPC message to the main process to request a theme toggle.
         // The main process will handle the actual theme change and persistence.
-        ipcRenderer.send('toggle-theme');
+        ipcRenderer.send
     });
 }
 
@@ -333,7 +335,7 @@ function createHistoryItem(item, index) {
 
     // Character count
     const charCount = document.createElement('span');
-    charCount.innerHTML = `📝 ${item.charCount} chars`;
+    charCount.innerHTML = `📝 ${item.charCount} characters`;
     metadata.appendChild(charCount);
 
     // Timestamp
