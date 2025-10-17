@@ -353,9 +353,7 @@ body {
 }
 
 .footer-copyright {
-	/* border-top: 1px solid var(--border-color); */
 	flex-basis: 100%;
-	/* text-align: center; */
 	margin-top: 20px;
 	font-size: 12px;
 	color: var(--text-secondary);
@@ -468,12 +466,4 @@ input:checked + .slider:before {
 
 .hidden {
 	display: none !important;
-}
-
-/* Prevent text selection during interactions */
-.no-select {
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 }

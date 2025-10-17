@@ -15,7 +15,6 @@
 const { app, BrowserWindow, globalShortcut, clipboard, Tray, Menu, ipcMain, Notification } = require('electron'); // Added Notification for native desktop alerts
 const path = require('path');
 const Store = require('electron-store');
-const { formatDistanceToNow } = require('date-fns');
 
 // =============================================================================
 // CONFIGURATION & INITIALIZATION
@@ -32,7 +31,7 @@ const store = new Store({
     defaults: {
         history: [],
         theme: 'dark',
-        maxHistory: 30,
+        maxHistory: 15,
         maxCharacters: 5000
     }
 });
@@ -155,38 +154,35 @@ function clearHistory() {
 // =============================================================================
 
 /**
- * Start monitoring clipboard for changes
- * Uses polling strategy (checks every 500ms)
+ * Adjust the clipboard polling rate.
+ * @param {number} interval - The polling interval in milliseconds.
  */
-function startClipboardMonitoring() {
-    // Initialize with current clipboard content
-    lastClipboardContent = clipboard.readText();
+function adjustPollingRate(interval) {
+    // Clear any existing interval
+    if (clipboardCheckInterval) {
+        clearInterval(clipboardCheckInterval);
+    }
 
-    // Poll clipboard every 500ms
+    // Set a new interval
     clipboardCheckInterval = setInterval(() => {
         const currentContent = clipboard.readText();
-
-        // Check if clipboard content has changed
         if (currentContent !== lastClipboardContent) {
             lastClipboardContent = currentContent;
-
-            // Add to history
             addToHistory(currentContent);
         }
-    }, 500);
+    }, interval);
 
-    console.log('Clipboard monitoring started');
+    console.log(`Clipboard polling interval set to ${interval}ms`);
 }
 
 /**
- * Stop monitoring clipboard
+ * Start monitoring clipboard for changes with an initial polling rate.
  */
-function stopClipboardMonitoring() {
-    if (clipboardCheckInterval) {
-        clearInterval(clipboardCheckInterval);
-        clipboardCheckInterval = null;
-        console.log('Clipboard monitoring stopped');
-    }
+function startClipboardMonitoring() {
+    lastClipboardContent = clipboard.readText();
+    // Start with the idle polling rate
+    adjustPollingRate(5000);
+    console.log('Adaptive clipboard monitoring started');
 }
 
 // =============================================================================
@@ -230,6 +226,10 @@ function createHistoryWindow() {
         historyWindow.show();
         historyWindow.focus();
     });
+
+    // Adjust polling rate on show/hide
+    historyWindow.on('show', () => adjustPollingRate(200));
+    historyWindow.on('hide', () => adjustPollingRate(5000));
 
     // Hide window instead of closing (faster to reopen)
     historyWindow.on('close', (event) => {
@@ -548,9 +548,6 @@ app.on('activate', () => {
 app.on('will-quit', () => {
     // Unregister all shortcuts
     unregisterShortcuts();
-
-    // Stop clipboard monitoring
-    stopClipboardMonitoring();
 
     console.log('ClipMaster shutting down...');
 });

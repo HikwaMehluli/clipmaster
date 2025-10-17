@@ -6,7 +6,8 @@ A powerful desktop clipboard manager that enhances your copy-paste workflow with
 
 ## Features ✨
 
-- **📋 Clipboard History**: Stores up to 30 clipboard entries automatically.
+- **📋 Clipboard History**: Stores up to 15 clipboard entries automatically.
+- **📝 Character Limit**: Each history item is limited to a maximum of 5,000 characters.
 - **🔍 Smart Search**: Quickly filter through your clipboard history with instant results.
 - **⌨️ Keyboard Shortcuts**: Lightning-fast navigation and pasting for an efficient workflow.
 - **🎨 Dark/Light Themes**: Eye-friendly themes that adapt to your preference.
@@ -137,7 +138,7 @@ ClipMaster uses `electron-store` for persistent data storage. Configuration and 
 ```json
 {
   "theme": "dark",
-  "maxHistory": 30,
+  "maxHistory": 15,
   "maxCharacters": 5000
 }
 ```
@@ -246,7 +247,7 @@ ClipMaster is designed with privacy in mind:
 ## Known Limitations ⚠️
 
 -   Currently supports **text-only** clipboard items (images, files, and other rich content are not yet supported).
--   Maximum of 30 items stored in the history.
+-   Maximum of 15 items stored in the history.
 -   Each history item is truncated to a maximum of 5,000 characters.
 -   The application must be running to capture clipboard changes.
 

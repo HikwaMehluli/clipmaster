@@ -32,8 +32,6 @@ const historyList = document.getElementById('historyList');
 const emptyState = document.getElementById('emptyState');
 const closeBtn = document.getElementById('closeBtn');
 const appContainer = document.getElementById('app');
-// const themeToggleHint = document.getElementById('themeToggleHint'); // Removed: Replaced by interactive toggle
-// const themeModeLabel = document.getElementById('themeModeLabel'); // Removed: Emojis are now handled by CSS within the slider
 const themeToggle = document.getElementById('themeToggle'); // Reference to the new theme toggle switch
 
 // =============================================================================
@@ -83,7 +81,7 @@ function setupEventListeners() {
         console.log('Theme toggle switch changed');
         // Send an IPC message to the main process to request a theme toggle.
         // The main process will handle the actual theme change and persistence.
-        ipcRenderer.send
+        ipcRenderer.send('toggle-theme');
     });
 }
 
@@ -417,29 +415,7 @@ function applyTheme(theme) {
 // UTILITY FUNCTIONS
 // =============================================================================
 
-/**
- * Format bytes to human-readable string
- * @param {number} bytes - Number of bytes
- * @returns {string} Formatted string
- */
-function formatBytes(bytes) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-}
 
-/**
- * Escape HTML to prevent XSS
- * @param {string} text - Text to escape
- * @returns {string} Escaped text
- */
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
 
 // =============================================================================
 // LOGGING

@@ -6,19 +6,15 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClipMaster - Clipboard History</title>
-    <meta name="description" content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">
     <meta name="author" content="Hikwa Mehluli">
+    <meta name="description" content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">    
     <meta name="keywords" content="clipboard manager, clipboard history, copy paste, productivity tool, desktop app">
-
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="dark-theme">
-    <!-- Main Container -->
-    <div id="app" class="window-container">
-
-        <!-- Header with Search Bar -->
-        <div class="header">
+    <main id="app" class="window-container">
+        <header class="header">
             <div class="search-container">
                 <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,10 +31,9 @@
                     </path>
                 </svg>
             </button>
-        </div>
-
-        <!-- History List Container -->
-        <div id="historyList" class="history-list">
+        </header>
+        
+        <section id="historyList" class="history-list">
             <!-- Items will be dynamically added here by renderer.js -->
 
             <!-- Empty State (shown when no history) -->
@@ -51,10 +46,9 @@
                 <p class="empty-text">No clipboard history yet</p>
                 <p class="empty-subtext">Copy something to get started!</p>
             </div>
-        </div>
-
-        <!-- Footer with Keyboard Hints and Theme Toggle -->
-        <div class="footer">
+        </section>
+        
+        <footer class="footer">
             <div class="footer-left">
                 <span class="footer-text">
                     <kbd>↑↓</kbd> Navigate ·
@@ -72,8 +66,9 @@
             <div class="footer-copyright">
                 <a href="https://thatafro.netlify.app/" target="_blank">Developed with ❤️ by thatAfro</a>
             </div>
-        </div>
-    <!-- Load Renderer Process Script -->
+        </footer>
+    </main>
+    
     <script src="renderer.js"></script>
 </body>
 
