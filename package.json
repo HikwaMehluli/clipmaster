@@ -1,7 +1,7 @@
 {
   "name": "clipmaster",
   "version": "1.0.0",
-  "description": "A powerful desktop clipboard manager with searchable history",
+  "description": "ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
