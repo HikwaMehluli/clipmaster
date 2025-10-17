@@ -199,12 +199,12 @@ function createHistoryWindow() {
     historyWindow = new BrowserWindow({
         width: 600,
         height: 500,
-        frame: false, // No title bar
+        frame: true, // No title bar = false, Show Title bar = true
         transparent: false,
         resizable: false,
         alwaysOnTop: true, // Stay on top of other windows
-        skipTaskbar: true, // Don't show in taskbar
-        show: false, // Start hidden, show when ready
+        skipTaskbar: false, // Don't show in taskbar = true, Show in taskbar = false 
+        show: true, // Start hidden = false, Start Showing = true. show when ready
         webPreferences: {
             nodeIntegration: true, // Allow Node.js in renderer
             contextIsolation: false, // Required for nodeIntegration
