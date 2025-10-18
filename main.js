@@ -424,7 +424,7 @@ ipcMain.on('paste-item', (event, content) => {
         // Create a new native desktop notification.
         new Notification({
             title: 'ClipMaster', // The title of the notification
-            body: 'Text copied to clipboard! You can now paste it manually.', // The main text content of the notification
+            body: 'Selected text, You can now paste it manually.', // The main text content of the notification
             icon: path.join(__dirname, 'assets', 'icon.ico') // Optional: An icon to display with the notification
         }).show();
     } else {

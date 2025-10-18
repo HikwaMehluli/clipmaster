@@ -6,7 +6,7 @@ A powerful desktop clipboard manager that enhances your copy-paste workflow with
 
 ## Features ✨
 
-- **📋 Clipboard History**: Stores up to 15 clipboard entries automatically.
+- **📋 Clipboard History**: Stores up to 30 clipboard entries automatically.
 - **📝 Character Limit**: Each history item is limited to a maximum of 5,000 characters.
 - **🔍 Smart Search**: Quickly filter through your clipboard history with instant results.
 - **⌨️ Keyboard Shortcuts**: Lightning-fast navigation and pasting for an efficient workflow.

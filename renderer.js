@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const { formatDistanceToNow } = require('date-fns');
 
 /**
@@ -83,6 +83,16 @@ function setupEventListeners() {
         // The main process will handle the actual theme change and persistence.
         ipcRenderer.send('toggle-theme');
     });
+
+    // Open external links in default browser
+    const externalLink = document.querySelector('.footer-copyright a');
+    if (externalLink) {
+        externalLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            const url = externalLink.href;
+            shell.openExternal(url);
+        });
+    }
 }
 
 /**
