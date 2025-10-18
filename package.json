@@ -37,7 +37,8 @@
       "renderer.js",
       "index.html",
       "styles.css",
-      "package.json"
+      "package.json",
+      "assets/"
     ],
     "win": {
       "target": "nsis",
