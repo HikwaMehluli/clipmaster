@@ -1,0 +1,17 @@
+{
+  "identifier": "default",
+  "description": "Default capabilities for ClipMaster",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "store:default",
+    "clipboard-manager:allow-read-text",
+    "clipboard-manager:allow-write-text",
+    "global-shortcut:allow-register",
+    "global-shortcut:allow-unregister",
+    "global-shortcut:allow-is-registered",
+    "notification:default",
+    "opener:default",
+    "autostart:default"
+  ]
+}

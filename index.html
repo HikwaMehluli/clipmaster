@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClipMaster - Clipboard History</title>
     <meta name="author" content="Hikwa Mehluli">
-    <meta name="description" content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">    
+    <meta name="description" content="ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.">
     <meta name="keywords" content="clipboard manager, clipboard history, copy paste, productivity tool, desktop app">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/icon.ico">
+    <link rel="stylesheet" href="/src/styles.css">
+    <link rel="icon" href="/assets/icon.ico">
 </head>
 
 <body class="dark-theme">
@@ -18,14 +17,11 @@
         <header class="header">
             <div class="search-container">
                 <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search clipboard history..."
-                    autocomplete="off">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search clipboard history..." autocomplete="off">
             </div>
 
-            <!-- Close Button -->
             <button id="closeBtn" class="close-btn" title="Close (Esc)">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
@@ -33,11 +29,8 @@
                 </svg>
             </button>
         </header>
-        
-        <section id="historyList" class="history-list">
-            <!-- Items will be dynamically added here by renderer.js -->
 
-            <!-- Empty State (shown when no history) -->
+        <section id="historyList" class="history-list">
             <div id="emptyState" class="empty-state">
                 <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -48,7 +41,30 @@
                 <p class="empty-subtext">Copy something to get started!</p>
             </div>
         </section>
-        
+
+        <div id="settingsPanel" class="settings-panel">
+            <div class="setting-item">
+                <label class="setting-label">Max History Items</label>
+                <div class="setting-control">
+                    <input type="range" id="maxHistorySlider" min="5" max="50" step="1" value="50">
+                    <span id="maxHistoryValue" class="setting-value">50</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label class="setting-label">Max Characters</label>
+                <div class="setting-control">
+                    <input type="range" id="maxCharactersSlider" min="500" max="10000" step="100" value="5000">
+                    <span id="maxCharactersValue" class="setting-value">5,000</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Clear All History</span>
+                <div class="setting-control">
+                    <button id="clearHistoryBtn" class="clear-history-btn">Clear All</button>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-left">
                 <span class="footer-text">
@@ -57,19 +73,26 @@
                     <kbd>Del</kbd> Delete ·
                     <kbd>Esc</kbd> Close
                 </span>
+                <span id="historyCounter" class="history-counter"></span>
             </div>
             <div class="footer-right">
                 <label class="switch">
                     <input type="checkbox" id="themeToggle">
                     <span class="slider round"></span>
                 </label>
+                <button id="settingsBtn" class="settings-btn" title="Settings">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
             </div>
             <div class="footer-copyright">
-                Developed with ❤️ by <a href="https://thatafro.netlify.app" target="_blank" >thatAfro</a>
+                Developed with ❤️ by <a href="https://thatafro.netlify.app" target="_blank">thatAfro</a>
             </div>
         </footer>
     </main>
-    
-    <script src="renderer.js"></script>
+
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
