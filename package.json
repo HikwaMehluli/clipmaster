@@ -1,18 +1,14 @@
 {
   "name": "clipmaster",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "description": "ClipMaster, A powerful desktop clipboard manager that enhances your copy-paste workflow with searchable history and quick access shortcuts.",
   "author": "Hikwa Mehluli",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "tauri": "tauri",
-    "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "dev": "tauri dev",
+    "build": "tauri build"
   },
   "keywords": ["clipboard", "manager", "history", "productivity"],
   "dependencies": {

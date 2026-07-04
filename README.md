@@ -7,8 +7,10 @@ A powerful desktop clipboard manager built with Tauri v2 and Rust — enhancing 
 ## Features ✨
 
 - **📋 Clipboard History**: Stores clipboard entries automatically with smart dedup.
+- **👤 About Section**: Settings panel includes developer info with a clickable author link.
+- **😊 Emoji Picker**: Built-in emoji picker with 10 categories, skin tone selector, 195 country flags, and search.
 - **📝 Character Limit**: Configurable per-item character limit (default 5,000).
-- **🔍 Smart Search**: Instant filtering through your clipboard history.
+- **🔍 Smart Search**: Instant filtering through your clipboard history and emojis.
 - **⌨️ Keyboard Shortcuts**: Global shortcuts for fast access and navigation.
 - **🎨 Dark/Light Themes**: Eye-friendly themes that adapt to your preference.
 - **💾 Persistent Storage**: Your history survives app and system restarts.
@@ -42,13 +44,13 @@ npm install
 ### Step 3: Run in Development Mode
 
 ```bash
-npm run tauri:dev
+npm run dev
 ```
 
 ### Step 4: Build for Production
 
 ```bash
-npm run tauri:build
+npm run build
 ```
 
 Installers will be in `src-tauri/target/release/bundle/`.
@@ -62,12 +64,22 @@ Installers will be in `src-tauri/target/release/bundle/`.
 3.  **Select an item** to copy it back to your clipboard.
 4.  **Paste it manually** (`Ctrl+V` / `Cmd+V`) into any application.
 
+### Emoji Picker
+
+Switch to the **Emojis** tab to access the built-in emoji picker:
+- **10 categories**: Joyous 🎉, Smileys 😊, People 👋, Animals 🐶, Food 🍔, Travel ✈️, Activities ⚽, Objects 💡, Symbols 💬, Flags 🇺🇳
+- **Skin tones**: 6-level selector (default, light, medium-light, medium, medium-dark, dark) — applies to skin-tone-supporting emojis
+- **All 195 UN country flags** — searchable by country name
+- **Search**: Filter emojis by name or keyword across all categories
+- Click an emoji or press `Enter` to copy it to clipboard (notification: "Emoji copied!")
+
 ### Settings Panel
 
 Click the gear icon (⚙️) in the footer to open the settings panel with animated slide-in:
 - **Max History Items**: Adjust the number of stored items (5–50).
 - **Max Characters**: Set the per-item character limit (500–10,000).
 - **Clear All History**: Removes all entries directly.
+- **About**: Shows app info (name, version, description) with a clickable developer link to the author's website.
 
 ### History Counter
 
@@ -79,12 +91,13 @@ When your history exceeds 80% capacity, a counter (e.g., `42/50`) appears in amb
 |----------|--------|
 | `Ctrl+Shift+V` (Win/Linux)<br>`Cmd+Shift+V` (Mac) | Open clipboard history window |
 | `Ctrl+Shift+T` (Win/Linux)<br>`Cmd+Shift+T` (Mac) | Toggle dark/light theme |
-| `↑` / `↓` | Navigate history items |
-| `Enter` | Copy selected item |
-| `Delete` | Delete selected item |
+| `↑` / `↓` (History tab) | Navigate history items |
+| `↑↓←→` (Emojis tab) | Navigate emoji grid |
+| `Enter` | Copy selected item / emoji |
+| `Delete` | Delete selected history item |
 | `Esc` | Close window |
-| `1-9, 0` | Quick paste items 1-10 |
-| Type to search | Filter history by content |
+| `1-9, 0` | Quick copy items 1-10 |
+| Type to search | Filter history or emojis by content |
 
 ### System Tray
 
@@ -97,15 +110,18 @@ clipmaster/
 ├── index.html              # Vite entry point (UI shell)
 ├── src/
 │   ├── main.js             # Frontend logic (Tauri IPC client)
-│   └── styles.css          # Application styling
+│   ├── styles.css          # Application styling
+│   └── emoji-data.js       # Emoji dataset (~600 emojis, 10 categories, flags, skin tones)
 ├── src-tauri/
 │   ├── src/
 │   │   ├── main.rs         # Rust binary entry point
-│   │   └── lib.rs          # Rust backend (clipboard, tray, shortcuts, persistence)
+│   │   └── lib.rs          # Rust backend (clipboard, tray, shortcuts, persistence, IPC commands)
 │   ├── Cargo.toml          # Rust dependencies
 │   ├── tauri.conf.json     # Tauri configuration
 │   ├── capabilities/       # Security permissions
 │   └── icons/              # Generated app icons
+├── public/
+│   └── emojis/             # 643 SVG emoji files (downloaded from emojiapi.dev)
 ├── assets/                 # Source icons
 ├── package.json            # npm scripts & JS dependencies
 └── vite.config.js          # Vite bundler config
@@ -133,6 +149,7 @@ Adjust from within the app via the gear icon in the footer.
 | **Backend** | Rust (native, no GC) |
 | **Frontend** | Vanilla JS (ES modules) |
 | **Bundler** | Vite 6 |
+| **Emojis** | 643 SVG files (static, local) with system-text fallback for missing ones |
 | **Persistence** | tauri-plugin-store |
 | **Clipboard** | tauri-plugin-clipboard-manager |
 | **Shortcuts** | tauri-plugin-global-shortcut |
@@ -159,4 +176,4 @@ Built with passion and powered by [Tauri](https://v2.tauri.app) and [Rust](https
 
 ---
 
-### [**Made with ❤️ by thatAfro**](https://thatafro.netlify.app)
+### [**Made with ❤️ by Hikwa Mehluli (thatAfro)**](https://thatafro.netlify.app)

@@ -1,13 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-utils/schema.json",
   "productName": "Clip Master",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "identifier": "com.clipmaster.desktop",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:1420",
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build"
+    "devUrl": "http://localhost:17000",
+    "beforeDevCommand": "vite",
+    "beforeBuildCommand": "vite build"
   },
   "app": {
     "windows": [
@@ -23,10 +23,12 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' ipc: http://localhost:1420"
+      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' ipc: http://localhost:17000"
     }
   },
   "bundle": {
+    "publisher": "Hikwa Mehluli",
+    "copyright": "Copyright (c) 2026 Hikwa Mehluli. All rights reserved.",
     "active": true,
     "targets": "all",
     "icon": [

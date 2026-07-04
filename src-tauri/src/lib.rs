@@ -5,7 +5,7 @@ use tauri::{
     image::Image,
     menu::{Menu, MenuItem, PredefinedMenuItem},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
-    AppHandle, Emitter, Manager, WindowEvent,
+    AppHandle, Emitter, Manager,
 };
 // autostart methods provided via ManagerExt trait on AppHandle
 use tauri_plugin_clipboard_manager::ClipboardExt;
@@ -225,6 +225,20 @@ fn paste_item(app: AppHandle, content: String) {
 }
 
 #[tauri::command]
+fn copy_emoji(app: AppHandle, emoji: String) {
+    let _ = app.clipboard().write_text(emoji.clone());
+    let _ = app
+        .notification()
+        .builder()
+        .title("ClipMaster")
+        .body("Emoji copied!")
+        .show();
+    if let Some(window) = app.get_webview_window("main") {
+        let _ = window.hide();
+    }
+}
+
+#[tauri::command]
 fn delete_item(app: AppHandle, id: String) {
     let mut history = load_history(&app);
     history.retain(|item| item.id != id);
@@ -431,18 +445,9 @@ pub fn run() {
 
             Ok(())
         })
-        .on_window_event(|window, event| match event {
-            WindowEvent::CloseRequested { api, .. } => {
-                let _ = window.hide();
-                api.prevent_close();
-            }
-            WindowEvent::Focused(false) => {
-                let _ = window.hide();
-            }
-            _ => {}
-        })
         .invoke_handler(tauri::generate_handler![
             paste_item,
+            copy_emoji,
             delete_item,
             toggle_theme,
             clear_history,
