@@ -7,7 +7,6 @@ A powerful desktop clipboard manager built with Tauri v2 and Rust — enhancing 
 ## Features ✨
 
 - **📋 Clipboard History**: Stores clipboard entries automatically with smart dedup.
-- **👤 About Section**: Settings panel includes developer info with a clickable author link.
 - **😊 Emoji Picker**: Built-in emoji picker with 10 categories, skin tone selector, 195 country flags, and search.
 - **📝 Character Limit**: Configurable per-item character limit (default 5,000).
 - **🔍 Smart Search**: Instant filtering through your clipboard history and emojis.
@@ -79,7 +78,6 @@ Click the gear icon (⚙️) in the footer to open the settings panel with anima
 - **Max History Items**: Adjust the number of stored items (5–50).
 - **Max Characters**: Set the per-item character limit (500–10,000).
 - **Clear All History**: Removes all entries directly.
-- **About**: Shows app info (name, version, description) with a clickable developer link to the author's website.
 
 ### History Counter
 
@@ -171,9 +169,5 @@ Adjust from within the app via the gear icon in the footer.
 - Requires the app to be running to capture clipboard changes
 
 ## Credits 👏
-
-Built with passion and powered by [Tauri](https://v2.tauri.app) and [Rust](https://www.rust-lang.org/).
-
----
 
 ### [**Made with ❤️ by Hikwa Mehluli (thatAfro)**](https://thatafro.netlify.app)
